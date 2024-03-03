@@ -7,6 +7,8 @@ class TodoList:
     # Method to add a task to the to-do list
     def add_task(self, task):
         self.tasks.append(task)  # Append the task to the list
+        with open("todo.txt", "a") as file:
+            file.write(task + '\n')  # Write the task to the file
         print("Task added successfully!")  # Print a success message
 
     # Method to view tasks in the to-do list
@@ -40,6 +42,13 @@ class TodoList:
 # Define the main function to run the to-do list application
 def main():
     todo_list = TodoList()  # Create an instance of TodoList
+    # Load tasks from the file if it exists
+    try:
+        with open("todo.txt", "r") as file:
+            todo_list.tasks = file.readlines()
+    except FileNotFoundError:
+        pass
+
     while True:  # Main loop for menu-driven interaction
         print("\n===== To-Do List Application =====")
         # Display menu options
@@ -65,6 +74,9 @@ def main():
             todo_list.remove_task(task_index)
         elif choice == '5':
             print("Exiting...")  # Print exit message
+            # Save tasks to the file before exiting
+            with open("todo.txt", "w") as file:
+                file.writelines(todo_list.tasks)
             break  # Exit the loop and terminate the program
         else:
             print("Invalid choice! Please enter a valid option.")  # Print error message for invalid choice
@@ -72,4 +84,4 @@ def main():
 
 # Check if the script is run directly
 if __name__ == "__main__":
-    main()  # Call the main function to start the application2
+    main()  # Call the main function to start the application

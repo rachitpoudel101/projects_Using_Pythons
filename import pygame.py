@@ -3,8 +3,8 @@ import random
 
 # === constants ===  # PEP8: UPPER_CASE_NAMES
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 800
 
 FPS = 60
 FPS = 120
